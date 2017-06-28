@@ -29,20 +29,22 @@ describe Pillar do
         proxy_enabled
       end
 
+      let(:proxy_pillars_that_can_be_blank) do
+        [:http_proxy, :https_proxy, :no_proxy]
+      end
+
       before do
         described_class.apply(proxy_enabled_settings_params)
+
+        proxy_pillars_that_can_be_blank.each do |key|
+          expect(settings_params[key]).to be_nil
+        end
       end
 
       it "removes proxy pillars when blank" do
-        keys = [:http_proxy, :https_proxy, :no_proxy]
-
-        keys.each do |key|
-          expect(settings_params[key]).to be_nil
-        end
-
         described_class.apply(settings_params)
 
-        keys.each do |key|
+        proxy_pillars_that_can_be_blank.each do |key|
           expect(described_class.find_by(pillar: key)).to be_nil
         end
       end
