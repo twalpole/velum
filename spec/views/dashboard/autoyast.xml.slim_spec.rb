@@ -25,8 +25,8 @@ describe "dashboard/autoyast" do
     it "generates a post partitioning script" do
       render
 
-      matches = assert_select("scripts/postpartitioning-scripts//script")
-      expect(matches.size).to eq(1)
+      matches = assert_select("scripts/chroot-scripts/script")
+      expect(matches.find { |m| m.to_s.include?("set_proxy.sh") }).not_to be_nil
     end
   end
 
@@ -35,11 +35,19 @@ describe "dashboard/autoyast" do
       assign(:proxy_systemwide, false)
     end
 
+    it "does not generate a proxy script" do
+      render
+
+      matches = assert_select("scripts/chroot-scripts/script")
+      expect(matches.find { |m| m.to_s.include?("set_proxy.sh") }).to be_nil
+    end
+
     it "does not generate a proxy section" do
       render
 
-      assert_select("scripts/postpartitioning-scripts//script", false)
+      assert_select("profile/networking/proxy", false)
     end
+
   end
 
   def check_xml_text_node(xpath, value)
