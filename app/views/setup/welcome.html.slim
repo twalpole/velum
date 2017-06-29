@@ -24,7 +24,7 @@ h1 Initial CaaSP Configuration
     .panel-heading.clearfix
       h3.panel-title Proxy settings
       .form-group
-        .input-group.btn-group-toggle.pull-right data-toggle="buttons"
+        .input-group.btn-group-sm.btn-group-toggle.pull-right data-toggle="buttons"
           = label_tag :proxy_toggle, nil, class: "btn btn-default", data: {toggle: "collapse", target: "#proxy-settings-panel"}
             = f.radio_button :enable_proxy, "enable", checked: false
             | Enable
