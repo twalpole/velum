@@ -343,7 +343,7 @@ $('body').on('click', '.reboot-update-btn', function(e) {
   $.post($btn.data('url'))
   .done(function(data) {
     if (data.status === REBOOTING) {
-      setTimeout(healthCheckToReload, 5000);
+      setTimeout(healthCheckToReload, 30000);
     } else {
       // update not needed
       unlockUpdateAdminModal();
