@@ -22,9 +22,9 @@ h1 Initial CaaSP Configuration
 
   .panel.panel-default
     .panel-heading.clearfix
-      | Proxy settings
+      h3.panel-title Proxy settings
       .form-group
-        .input-group.btn-group-toggle.btn-toggle.pull-right data-toggle="buttons"
+        .input-group.btn-group-toggle.pull-right data-toggle="buttons"
           = label_tag :proxy_toggle, nil, class: "btn btn-default", data: {toggle: "collapse", target: "#proxy-settings-panel"}
             = f.radio_button :enable_proxy, "enable", checked: false
             | Enable
@@ -51,7 +51,7 @@ h1 Initial CaaSP Configuration
           = f.label :proxy_systemwide, "Use proxy systemwide"
           p Choose whether the proxy settings should apply only to the container
             engine or to all the processes running on the cluster nodes.
-          .input-group.btn-group-toggle.btn-toggle data-toggle="buttons"
+          .input-group.btn-group-toggle data-toggle="buttons"
             = label_tag :proxy_systemwide, nil, class: "btn btn-primary active"
               = f.radio_button :proxy_systemwide, "false", checked: true
               | Container Engine only
